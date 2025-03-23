@@ -140,12 +140,21 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      // Toggle mobile menu
       const menuToggle = document.querySelector('.menu-toggle');
       const nav = document.querySelector('nav');
       menuToggle.addEventListener('click', function() {
         nav.classList.toggle('open');
       });
+  
+      // Resume button click event: Opens the PDF in a new tab
+      const resumeButton = document.querySelector('.resume-button');
+      if (resumeButton) {
+        resumeButton.addEventListener('click', function() {
+          window.open('PDFs/resume-current.pdf', '_blank');
+        });
+      }
     });
-  </script>  
+  </script>
 </body>
 </html>
