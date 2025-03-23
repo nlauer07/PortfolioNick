@@ -10,13 +10,14 @@
   <title>IoT Projects - Portfolio</title>
   <!-- Favicon -->
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <!-- Link to Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-90WXD2WPR8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-90WXD2WPR8');
   </script>
 </head>
@@ -27,14 +28,16 @@
       <a href="index.html">
         <img src="images/logo.png" alt="Site Logo"/>
       </a>
-      <img src="images/HeaderEllipse.png" alt="Logo Ellipse Image"/>
+      <img src="images/HeaderEllipse.png" alt="Logo Ellipse Image"/>&nbsp;
       <span class="site-name">Nick Lauer</span>
     </div>
+    <!-- Mobile Menu Toggle (visible only on small screens) -->
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav>
       <ul>
         <li><a href="about.html">About me</a></li>
         <li><a href="skills.html">Skills</a></li>
-        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="contact.html">Contact me</a></li>
       </ul>
     </nav>
@@ -42,50 +45,94 @@
 
   <!-- Main Content -->
   <main class="project-page">
-    <h1>IoT Project(s)</h1>
-    <section>
-      <!-- Back Button to Portfolio Categories -->
-      <a href="portfolio.html">
-        <button type="button">
+    <!-- Project Header Container -->
+    <div class="project-header">
+      <h1>IoT Project(s)</h1>
+
+    </div>
+    <div class="project-backbtn">
+      <a href="portfolio.html" class="back-button-link">
+        <button type="button" class="back-button">
           <img src="images/BackArrow.png" alt="Arrow"/> Back to Categories
         </button>
       </a>
-      <!-- Home Automation Project -->
+    </div class>
+
+    <!-- Project Details Section -->
+    <section>
       <h2>Home Automation</h2>
       <p>
         This project repurposes a tablet as a dedicated home automation console,
-         effectively replacing standard light switches. A CAD model was designed for mounting the tablet.
-          The server side coordinates with MariaDB for local logging, Python scripts for operational logic, 
-          and local LLM voice control for hands-free commands. 
-          Sensor automation, WebRTC for real-time streaming, and various APIs enable a seamless smart home experience.
+        effectively replacing standard light switches. A CAD model was designed for mounting the tablet.
+        The server side coordinates with MariaDB for local logging, Python scripts for operational logic, 
+        and local LLM voice control for hands-free commands. 
+        Sensor automation, WebRTC for real-time streaming, and various APIs enable a seamless smart home experience.
       </p>
   
-      <!-- Image below paragraph content -->
+      <!-- Centered image -->
       <img src="images/dashboard-image.png" alt="Home Automation Screenshot"/>
   
-      <!-- Small heading above mp4 video -->
-      <h3>See Demo of UI Below</h3>
-      <video width="640" height="360" controls>
-        <source src="videos/UIdemo.mp4" type="video/mp4"/>
-        Your browser cannot view the video.
-      </video>
+      <!-- Demo Container -->
+      <div class="demo-container">
+        <button id="toggleDemoBtn">Click to See Demo of UI Below</button>
+        <div id="demoVideo" style="display: none; margin-top: 1rem;">
+          <video id="demoV" width="40%" controls>
+            <source src="videos/UIdemo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
     </section>
   </main>
 
   <!-- Footer -->
   <footer>
     <p>Copyright © 2025 Nick Lauer</p>
-    
-    <!-- Contact Buttons -->
-    <a href="mailto:reverb_eight.3c@icloud.com">
-      <img src="images/email-button.png" alt="Email Button"/>
-    </a>
-    <a href="https://github.com/nlauer07" target="_blank">
-      <img src="images/github-button.png" alt="GitHub Button"/>
-    </a>
-    <a href="https://www.linkedin.com/in/nick-lauer-343554234" target="_blank">
-      <img src="images/linkedin-button.png" alt="LinkedIn Button"/>
-    </a>
+    <div class="social-links">
+      <a href="mailto:reverb_eight.3c@icloud.com" class="email-icon">
+        <img src="images/email-button.png" alt="Email Button">
+      </a>
+      <a href="https://github.com/nlauer07" target="_blank">
+        <img src="images/github-button.png" alt="GitHub Button">
+      </a>
+      <a href="https://www.linkedin.com/in/nick-lauer-343554234" target="_blank">
+        <img src="images/linkedin-button.png" alt="LinkedIn Button">
+      </a>
+    </div>
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('nav');
+      menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleDemoBtn = document.getElementById('toggleDemoBtn');
+      const demoVideo = document.getElementById('demoVideo');
+      const videoEl = document.getElementById('demoV');
+
+      if(toggleDemoBtn && demoVideo && videoEl) {
+        toggleDemoBtn.addEventListener('click', function () {
+          demoVideo.style.display = 'block';
+          demoVideo.scrollIntoView({ behavior: 'smooth' });
+          videoEl.play().catch(error => {
+            console.error('Autoplay error:', error);
+          });
+        });
+
+        videoEl.addEventListener('ended', function () {
+          demoVideo.style.display = 'none';
+        });
+      } else {
+        console.error('Demo elements not found.');
+      }
+    });
+  </script>
 </body>
 </html>

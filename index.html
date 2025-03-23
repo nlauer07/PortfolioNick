@@ -10,6 +10,10 @@
   <title>Portfolio - Nick Lauer</title>
   <!-- Favicon -->
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+  <!-- Link to Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-90WXD2WPR8"></script>
   <script>
@@ -21,13 +25,15 @@
   </script>
 </head>
 <body>
-  <!-- Header with Logo and Navigation (Index Page only) -->
-  <header>
+  <!-- Header with a separate class for the home page -->
+  <header class="home-header">
     <div class="home-logo-container">
       <a href="index.html">
         <img src="images/logo.png" alt="Site Logo">
       </a>
     </div>
+    <!-- Mobile Menu Toggle (visible only on small screens) -->
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav>
       <ul>
         <li><a href="about.html">About me</a></li>
@@ -40,31 +46,40 @@
 
   <!-- Main Content -->
   <main class="home-page">
-    <h1 class="greeting">Hi, I am Nick Lauer</h1>
+    <!-- Split "Hi, I am" and "Nick Lauer" into two headings -->
+    <h1 class="hi-im">Hi, I am</h1>
+    <h1 class="nick-lauer">Nick Lauer</h1>
+
     <p class="curious">Curious about my work?</p>
     <p class="invitation">Learn more above!</p>
 
-    <!-- Layered with CSS later so the ellipse sits behind the headshot -->
-    <div class="headshot-container">
-      <img src="images/headshotEllipse.png" alt="Ellipse behind headshot" style="width: 83px; height: 82px;">
-      <img src="images/headshot.png" alt="Headshot of Nick Lauer" style="width: 80px; height: 95px;">
-    </div>
+    <!-- Headshot Image -->
+    <img src="images/headshot.png" alt="Headshot of Nick Lauer" class="headshot" width="236" height="297"/>
   </main>
-
   <!-- Footer -->
   <footer>
     <p>Copyright © 2025 Nick Lauer</p>
-    
-    <!-- Contact Buttons -->
-    <a href="mailto:reverb_eight.3c@icloud.com">
-      <img src="images/email-button.png" alt="Email Button">
-    </a>
-    <a href="https://github.com/nlauer07" target="_blank">
-      <img src="images/github-button.png" alt="GitHub Button">
-    </a>
-    <a href="https://www.linkedin.com/in/nick-lauer-343554234" target="_blank">
-      <img src="images/linkedin-button.png" alt="LinkedIn Button">
-    </a>
-  </footer>
+    <div class="social-links">
+      <a href="mailto:reverb_eight.3c@icloud.com" class="email-icon">
+        <img src="images/email-button.png" alt="Email Button">
+      </a>
+      <a href="https://github.com/nlauer07" target="_blank">
+        <img src="images/github-button.png" alt="GitHub Button">
+      </a>
+      <a href="https://www.linkedin.com/in/nick-lauer-343554234" target="_blank">
+        <img src="images/linkedin-button.png" alt="LinkedIn Button">
+      </a>
+    </div>
+  </footer> 
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('nav');
+      menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,939 @@
+/* -------------------------------------
+   IMPORT FONTS
+   Loads custom fonts from Google Fonts.
+------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Montserrat:wght@700;600;200&display=swap');  /* Import custom fonts */
+
+/* -------------------------------------
+   GLOBAL RESET & BASE STYLES
+   Resets default browser styles and sets base styling.
+------------------------------------- */
+* {
+  margin: 0;                 /* Remove default margins */
+  padding: 0;                /* Remove default padding */
+  box-sizing: border-box;    /* Include padding and border in element's total width/height */
+}
+
+html, body {
+  height: 100%;              /* Allow html and body to occupy full viewport height */
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;  /* Applies main font family across the site */
+  background-color: #242424;              /* Sets a dark background for a modern look */
+  color: #FFFFFF;                         /* Uses white text to contrast with dark background */
+  line-height: 1.6;                       /* Provides comfortable spacing between lines */
+  display: grid;                          /* Creates a grid-based layout for header, main, footer */
+  grid-template-rows: auto 1fr auto;      /* Reserves space for header at top, footer at bottom */
+  min-height: 100vh;                      /* Ensures page always fills at least full viewport height */
+}
+
+/* -------------------------------------
+   MAIN CONTENT LAYOUT (Holy Grail)
+   Centers the main content using a three-column grid.
+------------------------------------- */
+main {
+  padding: 2rem;                            /* Provides padding around main content */
+  display: grid;                            /* Uses CSS Grid to layout the main content */
+  grid-template-columns: 1fr minmax(0, 960px) 1fr;  /* Creates a central column with flexible side columns */
+}
+
+main > * {
+  grid-column: 2;                           /* Centers direct children in the middle column */
+}
+
+a {
+  text-decoration: none;     /* Removes default underline from links */
+  color: inherit;            /* Inherits parent element's color for links */
+}
+
+/* -------------------------------------
+   HEADER & NAVIGATION
+   Styles for the header and navigation menu.
+------------------------------------- */
+header {
+  background-color: #242424;  /* Matches the body background color */
+  padding: 1rem 2rem;         /* Adds padding inside the header */
+  display: flex;             /* Uses flexbox for layout */
+  flex-wrap: wrap;           /* Allows header items to wrap on smaller screens */
+  align-items: center;       /* Vertically centers items within the header */
+  justify-content: space-between;  /* Distributes space between header items */
+  position: sticky;          /* Keeps the header visible during scrolling */
+  top: 0;                    /* Fixes the header to the top of the viewport */
+  z-index: 1000;             /* Ensures header is above other elements */
+}
+
+.logo-container,
+.home-logo-container {
+  display: flex;             /* Displays logo and text in a row */
+  align-items: center;       /* Vertically aligns items within the container */
+}
+
+.logo-container img,
+.home-logo-container img {
+  display: block;            /* Makes images block elements for better spacing control */
+}
+
+header:not(.home-header) .site-name {
+  font-family: 'Montserrat', sans-serif;  /* Uses Montserrat font for the site name */
+  font-weight: bold;         /* Makes the text bold */
+  font-size: 17px;           /* Sets the font size for the site name */
+  background: linear-gradient(to right, #374A86, #4D856F);  /* Applies a gradient background */
+  -webkit-background-clip: text;  /* Clips background to text for WebKit browsers */
+  background-clip: text;          /* Standard property to clip background to text */
+  -webkit-text-fill-color: transparent;  /* Makes text transparent to reveal gradient in WebKit */
+  color: transparent;        /* Ensures text is transparent for the gradient effect */
+}
+
+nav ul {
+  list-style: none;          /* Removes default bullet points from the list */
+  display: flex;             /* Displays nav items in a row */
+  gap: 1rem;                /* Adds space between nav items */
+}
+
+nav a {
+  font-family: 'Montserrat', sans-serif;  /* Uses Montserrat for navigation links */
+  font-weight: 700;           /* Bold text for prominence */
+  font-size: 17px;            /* Sets the font size for nav links */
+  padding: 0.5rem 0.75rem;    /* Provides padding around nav links */
+  color: #FFFFFF;            /* Sets text color to white */
+  border-bottom: 2px solid transparent;  /* Sets up a transparent bottom border for hover effect */
+  transition: border-bottom 0.3s ease, color 0.3s ease;  /* Animates changes smoothly */
+}
+
+html {
+  overflow-x: hidden;       /* Prevents horizontal scrolling */
+}
+
+header:not(.home-header) {
+  overflow: visible;        /* Allows decorative elements to be visible */
+  margin-bottom: 2rem;       /* Adds space below the header */
+}
+
+header:not(.home-header) nav {
+  position: relative;       /* Positions nav relative for pseudo-element placement */
+  padding: 0.9rem 1rem;      /* Adds padding inside the nav area */
+  z-index: 1;               /* Places nav above the pseudo-element background */
+}
+
+header:not(.home-header) nav::before {
+  content: "";              /* Creates an empty pseudo-element */
+  position: absolute;       /* Positions the pseudo-element absolutely */
+  top: 0;                   /* Aligns to the top of the nav */
+  left: 0;                  /* Aligns to the left of the nav */
+  bottom: 0;                /* Aligns to the bottom of the nav */
+  right: -50vw;             /* Extends the pseudo-element beyond the viewport */
+  background-color: #05041C;  /* Sets a dark background color */
+  border-radius: 9999px;     /* Rounds the corners to create a pill shape */
+  z-index: -1;              /* Places the pseudo-element behind the nav items */
+}
+
+nav a:hover,
+nav a.active {
+  border-bottom-color: #25A579; /* Changes bottom border color on hover/active */
+  color: #25A579;             /* Changes text color on hover/active */
+}
+
+nav a[href="contact.html"] {
+  background-color: #FFFFFF;  /* Sets background to white for the Contact link */
+  color: #1C1C1C;             /* Sets text color to dark for contrast */
+  padding: 0.5rem 1rem;       /* Provides padding for button-like appearance */
+  border-radius: 30px;        /* Rounds the corners to form a pill shape */
+}
+
+/* -------------------------------------
+   MOBILE NAVIGATION TOGGLE
+   Styles for the hamburger menu on small screens.
+------------------------------------- */
+.menu-toggle {
+  display: none;             /* Hides the toggle button on larger screens */
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;          /* Shows the toggle button on mobile devices */
+    margin-left: auto;        /* Pushes the toggle button to the right */
+    color: #ffffff;          /* Sets text color to white */
+    background: none;         /* Removes background from the button */
+    border: none;             /* Removes border from the button */
+    font-size: 24px;          /* Increases font size for visibility */
+    cursor: pointer;          /* Changes cursor to pointer on hover */
+  }
+  
+  nav ul {
+    display: none;           /* Hides navigation links by default on mobile */
+    flex-direction: column;  /* Stacks nav links vertically */
+    width: 100%;             /* Full width for nav links */
+    margin-top: 1rem;        /* Adds space above the nav links */
+  }
+  
+  nav.open ul {
+    display: flex;           /* Displays nav links when the menu is open */
+  }
+  
+  nav.open ul li {
+    margin: 0.5rem 0;        /* Adds vertical spacing between nav items */
+  }
+}
+
+/* -------------------------------------
+   HOME PAGE STYLES (index.html)
+   Custom styles for the homepage layout.
+------------------------------------- */
+.home-page {
+  position: relative;        /* Allows absolute positioning of child elements */
+  background-color: #242424;  /* Uses dark background to match body */
+  min-height: 100vh;         /* Ensures the home page fills the viewport */
+  padding: 4rem 2rem;        /* Adds padding around the home page content */
+  overflow: hidden;          /* Hides overflowing elements (diagonal background) */
+}
+
+.home-page::before {
+  content: "";               /* Creates a decorative pseudo-element */
+  position: absolute;        /* Positions the pseudo-element absolutely */
+  top: 0;                    /* Aligns to the top */
+  right: 0;                  /* Aligns to the right */
+  bottom: 0;                 /* Aligns to the bottom */
+  left: 50%;                 /* Starts at the middle of the screen */
+  background-color: #05041C;  /* Sets the overlay color */
+  clip-path: polygon(0 0, 100% 0, 100% 100%);  /* Creates a diagonal shape */
+  z-index: 0;                /* Places the pseudo-element behind the content */
+}
+
+.headshot {
+  display: block;            /* Ensures the headshot is a block element */
+  margin: 2rem auto 0;        /* Centers the headshot with top margin */
+  z-index: 1;                /* Places the headshot above the overlay */
+  max-width: 236px;          /* Limits the maximum width of the headshot */
+  height: auto;              /* Maintains aspect ratio */
+  position: relative;        /* Allows further positioning if needed */
+}
+
+@media (max-width: 768px) {
+  .headshot {
+    position: absolute;          /* Positions headshot absolutely on mobile */
+    bottom: 2rem;                /* Places headshot above the footer */
+    left: 50%;                   /* Centers headshot horizontally */
+    transform: translateX(-50%); /* Adjusts position to exactly center */
+  }
+}
+
+/* -------------------------------------
+   HOME PAGE HEADINGS
+   Styles for large headings on the homepage.
+------------------------------------- */
+.hi-im,
+.nick-lauer,
+.curious,
+.invitation {
+  font-family: 'Raleway', sans-serif;  /* Uses Raleway for prominent headings */
+  position: static;          /* Uses default positioning */
+  line-height: normal;       /* Uses default line height */
+  margin-bottom: 1rem;       /* Adds space below each heading */
+}
+
+.hi-im {
+  font-weight: 700;          /* Bold style for "Hi, I am" */
+  font-size: 40px;           /* Sets font size for "Hi, I am" */
+}
+
+.nick-lauer {
+  font-weight: 700;          /* Bold style for main name */
+  font-size: 80px;           /* Sets large font size for the name */
+}
+
+.curious {
+  font-weight: 800;          /* Extra bold for subheading */
+  font-size: 40px;           /* Sets font size for the subheading */
+  color: #5A947F;            /* Applies a greenish color */
+  margin-top: 2rem;          /* Adds extra margin at the top */
+}
+
+.invitation {
+  font-weight: 800;          /* Extra bold for invitation text */
+  font-size: 48px;           /* Sets larger font size */
+  margin-bottom: 2rem;       /* Adds extra bottom margin */
+}
+
+/* -------------------------------------
+   ABOUT PAGE STYLES (about.html)
+   Styles for the About page including hero section.
+------------------------------------- */
+.hero-gradient {
+  background: linear-gradient(to right, #3F527E, #05041C);  /* Applies gradient background */
+  border-radius: 32px;        /* Rounds the corners */
+  padding: 4rem;              /* Adds padding inside the hero section */
+  margin: 3% 0 2rem;          /* Sets margins around the hero section */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Adds a subtle shadow */
+}
+
+.about-heading {
+  font-family: 'Montserrat', sans-serif;  /* Uses Montserrat for the about heading */
+  font-weight: 700;           /* Bold heading style */
+  font-size: 48px;            /* Sets large font size */
+  text-align: center;         /* Centers the heading */
+  margin-bottom: 1rem;        /* Adds space below the heading */
+}
+
+.intro-paragraph {
+  max-width: 800px;           /* Limits the paragraph width */
+  margin: 0 auto 1rem;        /* Centers the paragraph and adds bottom margin */
+  font-size: 22px;            /* Sets readable font size */
+  text-align: center;         /* Centers the paragraph text */
+  line-height: 1.5;           /* Improves readability with proper line spacing */
+}
+
+/* Style for the Education section heading on About page */
+.about-page h2:first-of-type {
+  font-family: 'Montserrat', sans-serif;  /* Uses Montserrat for consistency */
+  font-weight: bold;          /* Bold text for emphasis */
+  font-size: 48px;            /* Large font size */
+  color: #ffffff;            /* White text color */
+  text-align: left;          /* Left-aligns the heading */
+  padding: 1rem;             /* Adds padding around the heading */
+  border-radius: 48px;        /* Rounds the heading corners */
+  background: linear-gradient(0.8turn, #05041C 95%, #3F527E);  /* Applies a gradient background */
+}
+
+.education-block {
+  padding: 1rem;             /* Adds padding inside the block */
+  background: linear-gradient(to right, #1D2444, #485AAA);  /* Uses gradient background */
+  margin-bottom: 2rem;        /* Adds bottom margin */
+  border-top-right-radius: 90px;  /* Rounds the top-right corner uniquely */
+}
+
+.education-degree {
+  font-family: 'Montserrat', sans-serif;  /* Uses Montserrat for degree text */
+  font-weight: 500;           /* Medium bold font */
+  font-size: 32px;            /* Sets font size */
+  color: #ffffff;            /* White text color */
+  margin-bottom: 0.5rem;      /* Small bottom margin */
+}
+
+.education-details {
+  display: flex;             /* Uses flexbox for layout */
+  justify-content: space-between;  /* Distributes space between items */
+  align-items: center;       /* Vertically centers the items */
+}
+
+.education-institution {
+  font-family: 'Montserrat', sans-serif;  /* Consistent font family */
+  font-weight: 400;           /* Regular font weight */
+  font-size: 24px;            /* Sets font size */
+  color: #ffffff;            /* White text color */
+}
+
+.education-dates {
+  font-family: 'Montserrat', sans-serif;  /* Uses same font for dates */
+  font-weight: 200;           /* Lighter font weight */
+  font-size: 24px;            /* Sets font size */
+  color: #ffffff;            /* White text color */
+}
+
+.education-program-overview {
+  background-color: #3C4A8D;  /* Solid background color */
+  padding: 1rem;              /* Adds padding */
+  margin-bottom: 2rem;        /* Adds bottom margin */
+  border-radius: 70px;        /* Rounds the corners */
+  text-align: center;         /* Centers text inside the block */
+}
+
+.overview-title {
+  font-family: 'Montserrat', sans-serif;  /* Consistent font usage */
+  font-weight: bold;          /* Bold for title */
+  font-size: 24px;            /* Sets font size */
+  color: #ffffff;            /* White text color */
+  margin-bottom: 1rem;        /* Adds bottom margin */
+}
+
+.overview-grid {
+  display: grid;             /* Uses grid layout for the list */
+  gap: 1rem;                /* Adds gap between grid items */
+  grid-template-columns: repeat(2, 1fr);  /* Creates two equal-width columns */
+}
+
+.overview-grid div {
+  font-family: 'Montserrat', sans-serif;  /* Consistent font family */
+  font-weight: 200;           /* Light font weight */
+  font-size: 24px;            /* Sets font size */
+  color: #ffffff;            /* White text color */
+  text-align: center;         /* Centers text inside grid items */
+  display: flex;             /* Uses flexbox for centering content */
+  align-items: center;       /* Vertically centers content */
+  justify-content: center;   /* Horizontally centers content */
+  overflow-wrap: break-word;  /* Ensures long words break to fit */
+}
+
+.overview-paragraph {
+  font-family: 'Montserrat', sans-serif;  /* Consistent text style */
+  font-weight: 200;           /* Light font weight */
+  font-size: 24px;            /* Sets font size */
+  color: #ffffff;            /* White text color */
+  margin: 0;                 /* No margin */
+}
+
+.scroll-spacer {
+  height: 50vh;              /* Spacer takes up half the viewport height */
+}
+
+/* -------------------------------------
+   CONTACT PAGE STYLES (contact.html)
+   Styles for the contact section and form.
+------------------------------------- */
+.contact-section {
+  max-width: 600px;          /* Limits width for readability */
+  margin: 0 auto;            /* Centers the section horizontally */
+  background-color: #05041C;  /* Dark background for the contact form */
+  border-radius: 10px;        /* Rounds the corners */
+}
+
+.contact-section h2 {
+  margin: 5% 0 1rem;         /* Adds top margin and bottom margin */
+  text-align: center;         /* Centers the heading text */
+}
+
+.contact-section form {
+  display: flex;             /* Uses flexbox for form layout */
+  flex-direction: column;    /* Stacks form fields vertically */
+  margin: 1rem;              /* Adds margin around the form */
+}
+
+.contact-section label {
+  margin: -3% 1% 1%;         /* Adjusts margin for labels */
+}
+
+.contact-section input,
+.contact-section textarea {
+  padding: 0.5rem;           /* Adds padding inside inputs and textarea */
+  margin-bottom: 1rem;        /* Adds space below each field */
+  background-color: #2A2A3C;  /* Dark background for input fields */
+  border: 1px solid #444;     /* Adds a border to distinguish the fields */
+  border-radius: 4px;         /* Rounds the corners of the fields */
+  color: #FFFFFF;            /* Sets text color inside inputs */
+}
+
+.contact-note {
+  font-size: 1rem;           /* Sets font size for the note */
+  font-weight: bold;         /* Bold text for emphasis */
+  color: #CCCCCC;            /* Light gray text color */
+  text-align: center;         /* Centers the note text */
+  margin: 1rem 0 2rem;         /* Adds margin around the note */
+  background-color: #61A088;  /* Sets a contrasting background color */
+  padding: 3%;               /* Adds padding inside the note */
+  border-radius: 3%;         /* Rounds the corners slightly */
+}
+
+/* -------------------------------------
+   SKILLS PAGE STYLES (skills.html)
+   Styles for the skills heading and grid.
+------------------------------------- */
+.skills-page h1 {
+  position: relative;        /* Allows pseudo-elements to be positioned */
+  display: inline-block;     /* Displays as an inline-block for proper sizing */
+  width: 400px;              /* Fixed width for the heading */
+  white-space: nowrap;       /* Prevents wrapping of the heading text */
+  color: #ffffff;            /* White text color */
+  font-family: 'Montserrat', sans-serif;  /* Uses Montserrat font */
+  font-weight: 700;          /* Bold font weight */
+  font-size: 48px;           /* Large font size for impact */
+  text-align: left;          /* Left-aligns the heading */
+  margin-bottom: 1rem;       /* Adds margin below the heading */
+  background: none;          /* No background on the heading */
+  border-radius: 0;          /* No border radius */
+}
+
+.skills-page h1::before {
+  content: "";               /* Creates a decorative pseudo-element */
+  position: absolute;        /* Positions the pseudo-element absolutely */
+  top: 0;                    /* Aligns to the top */
+  left: -200px;              /* Positions to the left of the heading */
+  width: 600px;              /* Sets the width of the pseudo-element */
+  height: 100%;              /* Matches the height of the heading */
+  background-color: #314B40;  /* Sets a background color */
+  border-top-right-radius: 20px;    /* Rounds the top-right corner */
+  border-bottom-right-radius: 20px; /* Rounds the bottom-right corner */
+  z-index: -1;               /* Places behind the heading text */
+}
+
+.skills-grid {
+  display: grid;             /* Uses grid layout for skills */
+  gap: 1rem;                /* Sets gap between grid items */
+  margin: 2rem auto;         /* Centers grid and adds vertical margin */
+}
+
+@media (min-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);  /* Three columns on large screens */
+    width: 80%;             /* Grid occupies 80% of container width */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);  /* Three columns on medium screens */
+    width: 90%;             /* Grid occupies 90% of container width */
+  }
+}
+
+@media (max-width: 767px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);  /* Two columns on small screens */
+    width: 95%;             /* Grid occupies 95% of container width */
+  }
+}
+
+.skills-grid div {
+  background-color: #2E3E76;  /* Sets a background color for skill items */
+  padding: 1rem;            /* Adds padding inside each grid item */
+  border-radius: 10px;       /* Rounds the corners */
+  font-family: 'Montserrat', sans-serif;  /* Uses consistent font family */
+  font-weight: 500;         /* Medium bold text */
+  font-size: 24px;          /* Sets font size */
+  color: #ffffff;           /* White text color */
+  text-align: center;       /* Centers text inside grid items */
+  display: flex;            /* Uses flexbox to center content */
+  align-items: center;      /* Vertically centers content */
+  justify-content: center;  /* Horizontally centers content */
+  overflow-wrap: break-word; /* Prevents overflow of long words */
+}
+
+/* -------------------------------------
+   PORTFOLIO PAGE STYLES (portfolio.html)
+   Styles for the portfolio heading and category buttons.
+------------------------------------- */
+.portfolio-page h1 {
+  position: relative;        /* Allows pseudo-element positioning */
+  display: inline-block;     /* Displays as inline-block */
+  width: 400px;              /* Fixed width for heading */
+  white-space: nowrap;       /* Prevents text wrapping */
+  color: #ffffff;            /* White text color */
+  font-family: 'Montserrat', sans-serif;  /* Consistent font */
+  font-weight: 650;          /* Uses non-standard weight (consider 700 for standard) */
+  font-size: 48px;           /* Large heading size */
+  text-align: left;          /* Left-aligns heading text */
+  margin-bottom: 1rem;       /* Adds space below heading */
+  background: none;          /* No background */
+  border-radius: 0;          /* No border radius */
+}
+
+.portfolio-page h1::before {
+  content: "";               /* Decorative pseudo-element for background */
+  position: absolute;        /* Positions absolutely */
+  top: 0;                    /* Aligns to the top */
+  right: 0;                  /* Aligns to the right */
+  left: -200px;              /* Positions far left */
+  width: 600px;              /* Sets width for decorative element */
+  height: 100%;              /* Matches heading height */
+  background-color: #314B40;  /* Sets background color */
+  border-top-right-radius: 25px;    /* Rounds top-right corner */
+  border-bottom-right-radius: 25px; /* Rounds bottom-right corner */
+  z-index: -1;               /* Places behind heading text */
+}
+
+.browse-text {
+  text-align: center;        /* Centers the text */
+  font-family: 'Montserrat', sans-serif;  /* Uses consistent font */
+  font-weight: 400;          /* Normal font weight */
+  font-size: 32px;           /* Sets font size */
+  color: #ffffff;            /* White text color */
+  margin: 1.2rem 0 1.5rem;    /* Adds vertical margins */
+}
+
+.project-buttons {
+  display: flex;             /* Uses flexbox for button layout */
+  flex-wrap: wrap;           /* Allows buttons to wrap */
+  gap: 1rem;                /* Sets gap between buttons */
+  justify-content: center;   /* Centers buttons horizontally */
+  padding: 120px 30px;       /* Adds padding around the button group */
+  margin-bottom: 1%;         /* Adds bottom margin */
+}
+
+.project-buttons a {
+  background-color: #2E3E76;  /* Button background color */
+  padding: 0.75rem 1rem;      /* Padding inside buttons */
+  border-radius: 10px;        /* Rounds button corners */
+  font-family: 'Montserrat', sans-serif;  /* Uses consistent font */
+  font-weight: 500;           /* Medium font weight */
+  font-size: 24px;            /* Sets font size */
+  color: #ffffff;            /* White text color */
+  transition: opacity 0.3s ease;  /* Smooth transition on hover */
+}
+
+.project-buttons a:hover {
+  opacity: 0.5;             /* Reduces opacity on hover */
+}
+
+/* -------------------------------------
+   PROJECT PAGE STYLES (CPP.html, IoT.html, etc.)
+   Styles for individual project pages.
+------------------------------------- */
+.project-page h1 {
+  position: relative;        /* For pseudo-element positioning */
+  display: inline-block;     /* Displays heading as inline-block */
+  width: 400px;              /* Fixed width for consistency */
+  white-space: nowrap;       /* Prevents text wrap */
+  color: #ffffff;            /* White text color */
+  font-family: 'Montserrat', sans-serif;  /* Uses consistent font */
+  font-weight: 700;          /* Bold text */
+  font-size: 48px;           /* Large font size */
+  text-align: left;          /* Left-aligns text */
+  margin-bottom: 1rem;       /* Adds bottom margin */
+  background: none;          /* No background */
+  border-radius: 0;          /* No rounding */
+}
+
+.project-page h1::before {
+  content: "";               /* Decorative background element */
+  position: absolute;        /* Positions absolutely */
+  top: 0;                    /* Aligns to the top */
+  right: 0;                  /* Aligns to the right */
+  left: -200px;              /* Extends far to the left */
+  width: 600px;              /* Sets width */
+  height: 100%;              /* Matches heading height */
+  background-color: #314B40;  /* Background color */
+  border-top-right-radius: 25px;    /* Rounds top-right corner */
+  border-bottom-right-radius: 25px; /* Rounds bottom-right corner */
+  z-index: -1;               /* Places behind the heading */
+}
+
+.project-page section {
+  position: relative;        /* Allows positioning within section */
+  margin-bottom: 2rem;       /* Adds space below each section */
+  background: linear-gradient(to right, #1D2444, #485AAA);  /* Applies a gradient background */
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);  /* Creates an angled clipping effect */
+  overflow: hidden;          /* Hides content outside the clip path */
+  padding: 2rem 4rem 1rem 6rem;  /* Adds padding inside the section */
+}
+
+.project-page h2 {
+  margin: 0 0 0.5rem;        /* Sets bottom margin */
+  font-size: 1.5rem;         /* Sets font size */
+  color: #FFFFFF;            /* White text color */
+}
+
+.project-page p {
+  margin: 0 0 1rem;          /* Sets bottom margin */
+  color: #CCCCCC;            /* Light gray text color */
+}
+
+.project-page button.github-btn {
+  background-color: #070370; /* Dark navy background */
+  color: #FFFFFF;            /* White text */
+  border: none;              /* No border */
+  font-weight: 420;          /* Non-standard weight (consider 400 or 500) */
+  font-size: 15px;           /* Sets font size */
+  padding: 0.7rem 1.25rem;    /* Adds padding inside button */
+  border-radius: 30px;        /* Fully rounds the corners */
+  cursor: pointer;           /* Pointer cursor on hover */
+  transition: opacity 0.3s ease;  /* Smooth opacity transition */
+  float: right;              /* Aligns button to the right */
+  margin-left: 25%;          /* Adds left margin */
+}
+
+.project-page button.github-btn:hover {
+  background-color: #0c04f0;  /* Changes background on hover */
+}
+
+.project-page a button {
+  background-color: #25A579;  /* Green background for button inside a link */
+  color: #FFFFFF;            /* White text color */
+  border: none;              /* No border */
+  padding: 0.75rem 1.25rem;    /* Adds padding */
+  border-radius: 4px;         /* Slightly rounds corners */
+  cursor: pointer;           /* Pointer cursor */
+  transition: opacity 0.3s ease;  /* Smooth transition */
+}
+
+/* Updated project page button style with proper flex alignment */
+.project-page a button {
+  background-color: #314B40;  /* Dark background for the button */
+  padding: 0.5rem 0.75rem;      /* Padding inside the button */
+  border: none;               /* No border */
+  border-radius: 10px;         /* Rounds the corners */
+  font-family: 'Montserrat', sans-serif;  /* Consistent font family */
+  font-weight: 500;           /* Medium bold text */
+  font-size: 25px;            /* Sets font size */
+  color: #ffffff;            /* White text color */
+  cursor: pointer;           /* Pointer cursor on hover */
+  transition: opacity 0.3s ease;  /* Smooth transition effect */
+  display: inline-flex;       /* Uses inline-flex layout */
+  align-items: flex-start;     /* Aligns content to the start of the flex container */
+}
+
+.project-page img,
+.project-page video {
+  display: block;            /* Displays as block elements */
+  margin: 1rem auto;         /* Centers images and videos with margin */
+}
+
+.project-page h3 {
+  text-align: center;        /* Centers the heading text */
+  background-color: #314B40;  /* Background color for the heading */
+  display: inline-block;     /* Displays as inline-block for proper sizing */
+  padding: 0.5rem 1rem;       /* Padding around the heading */
+  border-radius: 9999px;      /* Fully rounded to create a pill shape */
+  margin: 0 auto 1rem;        /* Centers and adds bottom margin */
+}
+
+/* -------------------------------------
+   DEMO CONTAINER STYLES
+   Centers and styles demo container headings.
+------------------------------------- */
+.demo-container {
+  text-align: center;        /* Centers text inside the demo container */
+}
+
+.demo-container h3 {
+  display: inline-block;     /* Displays as inline-block */
+  background-color: #314B40;  /* Sets background color */
+  padding: 0.5rem 1rem;       /* Adds padding */
+  border-radius: 9999px;      /* Rounds corners fully */
+  margin: 0 auto 1rem;        /* Centers and adds margin */
+}
+
+/* -------------------------------------
+   BACK BUTTON STYLES
+   Styles for the back arrow image.
+------------------------------------- */
+.back-button img {
+  height: 16px;              /* Sets height of the image */
+  margin-right: 0.5rem;       /* Adds space to the right */
+  vertical-align: middle;     /* Vertically aligns the image */
+}
+
+/* -------------------------------------
+   PROJECT HEADER STYLES
+   Styles for the project header and back button link.
+------------------------------------- */
+.project-header {
+  text-align: left;          /* Left-aligns the header text */
+  margin-bottom: 1rem;        /* Adds margin below the header */
+}
+
+.project-header .back-button-link {
+  display: inline-block;     /* Displays as inline-block */
+  margin-top: 0.5rem;         /* Adds top margin */
+}
+
+/* -------------------------------------
+   GENERAL BUTTON STYLES
+   Base styling for buttons across the site.
+------------------------------------- */
+button,
+.project-page > a > button {
+  display: inline-flex;      /* Uses inline-flex for button layout */
+  align-items: center;       /* Centers content vertically */
+  background-color: #314B40;  /* Sets background color */
+  border: none;              /* Removes default border */
+  color: #FFFFFF;            /* White text color */
+  cursor: pointer;           /* Pointer cursor on hover */
+  padding: 0.5rem 1rem;       /* Adds padding inside the button */
+  margin-bottom: 2rem;        /* Adds bottom margin */
+  border-radius: 30px;        /* Rounds the corners */
+  transition: background-color 0.3s ease;  /* Smooth background transition */
+}
+
+.project-page > a > button img {
+  margin-right: 0.5rem;      /* Adds spacing to the right of button images */
+}
+
+.project-page > a > button:hover {
+  background-color: #1e2824;  /* Darkens button on hover */
+}
+
+.github-btn {
+  background-color: #070370;  /* Sets dark navy background for GitHub button */
+  border: none;              /* Removes border */
+  color: #FFFFFF;            /* White text color */
+  padding: 0.75rem 1.5rem;     /* Adds padding */
+  cursor: pointer;           /* Pointer cursor on hover */
+  border-radius: 30px;        /* Rounds the corners */
+  transition: background-color 0.3s ease;  /* Smooth transition on hover */
+}
+
+.github-btn:hover {
+  background-color: #05033a;  /* Changes background color on hover */
+}
+
+/* -------------------------------------
+   RESUME BUTTON STYLES
+   Styles for the "Download Resume" button.
+------------------------------------- */
+.resume-button {
+  background-color: #05041C;  /* Dark background for resume button */
+  font-family: 'Montserrat', sans-serif;  /* Uses Montserrat font */
+  font-weight: 420;           /* Non-standard weight (consider 400 or 500) */
+  font-size: 20px;            /* Sets font size */
+  font-style: italic;         /* Italicizes text */
+  color: #ffffff;            /* White text color */
+  width: 504px;              /* Fixed width */
+  height: 100px;             /* Fixed height */
+  border-radius: 30px;        /* Rounds the corners */
+  display: flex;             /* Uses flexbox for centering content */
+  align-items: center;       /* Vertically centers content */
+  justify-content: center;   /* Horizontally centers content */
+  margin: 1% auto;           /* Centers button with vertical margin */
+  cursor: pointer;           /* Pointer cursor on hover */
+  transition: opacity 0.3s ease;  /* Smooth opacity transition */
+}
+
+@media (max-width: 768px) {
+  .resume-button {
+    width: 90%;            /* Responsive width for small screens */
+    height: auto;          /* Height adjusts based on content */
+    padding: 20px 0;       /* Adds vertical padding */
+    display: flex;         /* Uses flexbox for centering */
+    align-items: center;   /* Centers content vertically */
+    justify-content: center;  /* Centers content horizontally */
+  }
+}
+
+.resume-button:hover {
+  background-color: #4D856F;  /* Changes background on hover */
+}
+
+/* -------------------------------------
+   FOOTER STYLES
+   Styles for the footer and its social links.
+------------------------------------- */
+footer {
+  display: flex;             /* Uses flexbox for layout */
+  align-items: center;       /* Centers items vertically */
+  justify-content: space-between;  /* Distributes space between items */
+  padding: 1rem 2rem;        /* Adds padding inside the footer */
+  background-color: #457A66;  /* Distinct background color for footer */
+  color: #FFFFFF;            /* White text color */
+}
+
+footer p {
+  margin: 0;               /* Removes default paragraph margin */
+}
+
+footer .social-links {
+  display: grid;           /* Uses grid layout for social links */
+  grid-auto-flow: column;   /* Arranges items in a single row */
+  align-items: center;      /* Centers items vertically */
+  gap: 0.5rem;             /* Sets gap between social icons */
+}
+
+footer .social-links a {
+  display: flex;           /* Uses flexbox for social icon links */
+  align-items: center;      /* Centers icon vertically */
+  justify-content: center;  /* Centers icon horizontally */
+  height: 52px;            /* Fixed height for icons */
+  width: 52px;             /* Fixed width for icons */
+}
+
+footer .social-links a img {
+  max-width: 100%;         /* Ensures image doesn't exceed container */
+  height: auto;            /* Maintains image aspect ratio */
+  display: block;          /* Displays image as a block element */
+  object-fit: contain;     /* Ensures image scales properly */
+}
+
+/* -------------------------------------
+   RESPONSIVE ADJUSTMENTS
+   Media queries to optimize layout on smaller screens.
+------------------------------------- */
+@media (max-width: 768px) {
+  header {
+    flex-direction: row;   /* Arranges header items in a row */
+    align-items: center;     /* Centers items vertically */
+  }
+  
+  nav ul {
+    flex-direction: column; /* Stacks nav items vertically */
+    width: 100%;            /* Full width nav items */
+    margin-top: 1rem;       /* Adds top margin */
+  }
+  
+  .portfolio-page .project-buttons {
+    flex-direction: column; /* Stacks project buttons vertically */
+    align-items: center;    /* Centers buttons horizontally */
+  }
+  
+  footer {
+    flex-direction: column; /* Stacks footer items vertically */
+    text-align: center;     /* Centers text in the footer */
+  }
+  
+  footer a:first-of-type {
+    margin: 0;             /* Removes margin for first social link */
+    margin-top: auto;      /* Ensures proper spacing at the top */
+  }
+  
+  .home-page::before,
+  .headshot {
+    display: none;         /* Hides diagonal background and headshot on mobile */
+  }
+  
+  .skills-page h1,
+  .portfolio-page h1,
+  .project-page h1 {
+    height: 140px;         /* Sets fixed height for headings on small screens */
+    line-height: 140px;     /* Matches line height to height for centering */
+    font-size: 48px;        /* Adjusts font size for headings */
+  }
+}
+
+/* -------------------------------------
+   IOT PAGE OVERRIDES
+   Specific styles for the IoT project page.
+------------------------------------- */
+.project-page a button {
+  background-color: #314B40;  /* Dark background for IoT buttons */
+  padding: 0.5rem 0.75rem;      /* Padding inside the button */
+  border: none;              /* Removes border */
+  border-radius: 10px;         /* Rounds the corners */
+  font-family: 'Montserrat', sans-serif;  /* Consistent font family */
+  font-weight: 500;          /* Medium bold text */
+  font-size: 25px;           /* Sets font size */
+  color: #ffffff;           /* White text color */
+  cursor: pointer;          /* Pointer cursor on hover */
+  transition: opacity 0.3s ease;  /* Smooth opacity transition */
+  display: inline-flex;      /* Uses inline-flex layout */
+  align-items: flex-start;    /* Aligns button content to the start */
+}
+
+.project-page img,
+.project-page video {
+  display: block;           /* Ensures media displays as block elements */
+  margin: 1rem auto;        /* Centers media with margin */
+}
+
+.project-page h3 {
+  text-align: center;       /* Centers heading text */
+  background-color: #314B40;  /* Sets background color */
+  display: inline-block;    /* Displays as inline-block */
+  padding: 0.5rem 1rem;      /* Adds padding inside the heading */
+  border-radius: 9999px;     /* Fully rounds the heading */
+  margin: 0 auto 1rem;       /* Centers the heading and adds bottom margin */
+}
+
+.demo-container {
+  text-align: center;       /* Centers demo container text */
+}
+
+.demo-container h3 {
+  display: inline-block;    /* Displays as inline-block */
+  background-color: #314B40;  /* Sets background color */
+  padding: 0.5rem 1rem;      /* Adds padding */
+  border-radius: 9999px;     /* Rounds the corners fully */
+  margin: 0 auto 1rem;       /* Centers and adds margin */
+}
+
+.back-button img {
+  height: 16px;             /* Sets the height of the back button image */
+  margin-right: 0.5rem;       /* Adds right margin */
+  vertical-align: middle;     /* Aligns image vertically in the middle */
+}
+
+.project-header {
+  text-align: left;         /* Left-aligns the project header text */
+  margin-bottom: 1rem;       /* Adds bottom margin */
+}
+
+.project-header .back-button-link {
+  display: inline-block;    /* Displays the back button link inline */
+  margin-top: 0.5rem;        /* Adds top margin */
+}

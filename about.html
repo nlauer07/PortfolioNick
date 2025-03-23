@@ -10,13 +10,14 @@
   <title>About Nick - Portfolio</title>
   <!-- Favicon -->
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <!-- Link to Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-90WXD2WPR8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-90WXD2WPR8');
   </script>
 </head>
@@ -27,91 +28,124 @@
       <a href="index.html">
         <img src="images/logo.png" alt="Site Logo">
       </a>
-      <img src="images/HeaderEllipse.png" alt="Logo Ellipse Image">
+      <img src="images/HeaderEllipse.png" alt="Logo Ellipse Image">&nbsp;
       <span class="site-name">Nick Lauer</span>
     </div>
-    <nav>
-      <ul>
-        <li><a href="about.html" class="active">About me</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="contact.html">Contact me</a></li>
-      </ul>
-    </nav>
+  <!-- Mobile Menu Toggle (visible only on small screens) -->
+  <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+  <nav>
+    <ul>
+      <li><a href="about.html">About me</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html">Contact me</a></li>
+    </ul>
+  </nav>
   </header>
 
   <!-- Main Content -->
   <main class="about-page">
-    <!-- Main heading -->
-    <h1>So, who am I?</h1>
-    <p>
-      I'm a technology enthusiast with a passion for solving complex problems 
-      and creating meaningful solutions. My goal is to work at the intersection 
-      of technology and business, helping teams navigate challenges and turn 
-      innovative ideas into impactful results. Whether it's improving processes, 
-      enhancing systems, or building connections, I'm eager to contribute to 
-      projects that make a difference.
-    </p>
+    <!-- Hero-like section with gradient background and corner radius -->
+    <section class="hero-gradient">
+      <h1 class="about-heading">So, who am I?</h1>
+      <p class="intro-paragraph">
+        I'm a technology student driven for solving complex problems 
+        and creating meaningful solutions. My goal is to work at the intersection 
+        of technology and business, helping teams navigate challenges and turn 
+        innovative ideas into impactful results. Whether it's improving processes, 
+        enhancing systems, or building connections, I'm eager to contribute to 
+        projects that make a difference.
+      </p>
+    </section>
 
-    <!-- Education Section -->
+    <!-- Education Section Heading -->
     <h2>Education</h2>
 
-    <!-- Bachelor of Science -->
-    <h3>Bachelor of Science, Integrated Information Technology</h3>
-    <p>University of South Carolina - Columbia &nbsp; 2022 - 2026</p>
-    <h4>Program Overview</h4>
-    <ul>
-      <li>Database Management Systems</li>
-      <li>Network Management</li>
-      <li>Cybersecurity Principles</li>
-      <li>Project Management for IT</li>
-      <li>Systems Analysis and Design</li>
-      <li>Agile Project Development</li>
-      <li>Business Law and Contracts</li>
-      <li>Programming and Development</li>
-    </ul>
+    <!-- Bachelor of Science Block -->
+    <div class="education-block">
+      <h3 class="education-degree">Bachelor of Science, Integrated Information Technology</h3>
+      <div class="education-details">
+         <span class="education-institution">University of South Carolina - Columbia</span>
+         <span class="education-dates">2022-2026</span>
+      </div>
+    </div>
+    <div class="education-program-overview">
+      <h4 class="overview-title">Program Overview</h4>
+      <div class="overview-grid">
+        <div>Database Management Systems</div>
+        <div>Network Management</div>
+        <div>Cybersecurity Principles</div>
+        <div>Project Management for IT</div>
+        <div>Systems Analysis and Design</div>
+        <div>Agile Project Development</div>
+        <div>Business Law and Contracts</div>
+        <div>Programming and Development</div>
+      </div>
+    </div>
 
-    <!-- Certificate -->
-    <h3>Certificate, Management Information Systems</h3>
-    <p>University of Maryland Global Campus &nbsp; 2024 - 2025</p>
-    <h4>Program Overview</h4>
-    <ul>
-      <li>Cybersecurity for Leaders and Managers</li>
-      <li>Information Systems in Organizations</li>
-      <li>Foundations of Management Info Systems</li>
-      <li>Software and Hardware Infrastructure</li>
-      <li>Telecommunications in Info Systems</li>
-      <li>Business Intelligence and Data Analytics</li>
-    </ul>
+    <!-- Certificate Block -->
+    <div class="education-block">
+      <h3 class="education-degree">Certificate, Management Information Systems</h3>
+      <div class="education-details">
+         <span class="education-institution">University of Maryland Global Campus</span>
+         <span class="education-dates">2024 - 2025</span>
+      </div>
+    </div>
+    <div class="education-program-overview">
+      <h4 class="overview-title">Program Overview</h4>
+      <div class="overview-grid">
+        <div>Cybersecurity for Leaders and Managers</div>
+        <div>Information Systems in Organizations</div>
+        <div>Foundations of Management Info Systems</div>
+        <div>Software and Hardware Infrastructure</div>
+        <div>Telecommunications in Info Systems</div>
+        <div>Business Intelligence and Data Analytics</div>
+      </div>
+    </div>
 
-    <!-- Data Privacy -->
-    <h3>Data Privacy and Technology</h3>
-    <p>Harvard Online &nbsp; In progress</p>
-    <p>
-      Covers data collection, surveillance, and the ethical implications of 
-      personal information in modern society.
-    </p>
+    <!-- Data Privacy Block -->
+    <div class="education-block">
+      <h3 class="education-degree">Data Privacy and Technology</h3>
+      <div class="education-details">
+         <span class="education-institution">Harvard Online</span>
+         <span class="education-dates">In progress</span>
+      </div>
+    </div>
+    <div class="education-program-overview">
+      <h4 class="overview-title">Program Overview</h4>
+      <p class="overview-paragraph">
+        Covers data collection, surveillance, and the ethical implications of personal information in modern society.
+      </p>
+    </div>
 
-    <!-- Download Resume Button using JavaScript -->
-    <button type="button" onclick="window.open('PDFs/resume-current.pdf', '_blank')">
-      Download Resume
-    </button>
+    <!-- Download Resume Button -->
+    <button type="button" class="resume-button">Download Resume</button>
   </main>
 
   <!-- Footer -->
   <footer>
     <p>Copyright © 2025 Nick Lauer</p>
-    
-    <!-- Contact Buttons -->
-    <a href="mailto:reverb_eight.3c@icloud.com">
-      <img src="images/email-button.png" alt="Email Button">
-    </a>
-    <a href="https://github.com/nlauer07" target="_blank">
-      <img src="images/github-button.png" alt="GitHub Button">
-    </a>
-    <a href="https://www.linkedin.com/in/nick-lauer-343554234" target="_blank">
-      <img src="images/linkedin-button.png" alt="LinkedIn Button">
-    </a>
-  </footer>
+    <div class="social-links">
+      <a href="mailto:reverb_eight.3c@icloud.com" class="email-icon">
+        <img src="images/email-button.png" alt="Email Button">
+      </a>
+      <a href="https://github.com/nlauer07" target="_blank">
+        <img src="images/github-button.png" alt="GitHub Button">
+      </a>
+      <a href="https://www.linkedin.com/in/nick-lauer-343554234" target="_blank">
+        <img src="images/linkedin-button.png" alt="LinkedIn Button">
+      </a>
+    </div>
+  </footer>  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('nav');
+      menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+    });
+  </script>  
 </body>
 </html>

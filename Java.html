@@ -10,6 +10,10 @@
   <title>Java Projects - Portfolio</title>
   <!-- Favicon -->
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+  <!-- Link to Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-90WXD2WPR8"></script>
   <script>
@@ -27,14 +31,16 @@
       <a href="index.html">
         <img src="images/logo.png" alt="Site Logo"/>
       </a>
-      <img src="images/HeaderEllipse.png" alt="Logo Ellipse Image"/>
+      <img src="images/HeaderEllipse.png" alt="Logo Ellipse Image"/>&nbsp;
       <span class="site-name">Nick Lauer</span>
     </div>
+  <!-- Mobile Menu Toggle (visible only on small screens) -->
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav>
       <ul>
         <li><a href="about.html">About me</a></li>
         <li><a href="skills.html">Skills</a></li>
-        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="contact.html">Contact me</a></li>
       </ul>
     </nav>
@@ -45,11 +51,14 @@
     <h1>Java Project(s)</h1>
 
     <!-- Back Button to Portfolio Categories -->
-    <a href="portfolio.html">
-      <button type="button">
-        <img src="images/BackArrow.png" alt="Arrow"/> Back to Categories
-      </button>
-    </a>
+    <div class="project-backbtn">
+      <a href="portfolio.html" class="back-button-link">
+        <button type="button" class="back-button">
+          <img src="images/BackArrow.png" alt="Arrow"/> Back to Categories
+        </button>
+      </a>
+    </div>
+    
 
     <!-- Project 1: SheepScheduler -->
     <section>
@@ -110,17 +119,27 @@
   <!-- Footer -->
   <footer>
     <p>Copyright © 2025 Nick Lauer</p>
-    
-    <!-- Contact Buttons -->
-    <a href="mailto:reverb_eight.3c@icloud.com">
-      <img src="images/email-button.png" alt="Email Button"/>
-    </a>
-    <a href="https://github.com/nlauer07" target="_blank">
-      <img src="images/github-button.png" alt="GitHub Button"/>
-    </a>
-    <a href="https://www.linkedin.com/in/nick-lauer-343554234" target="_blank">
-      <img src="images/linkedin-button.png" alt="LinkedIn Button"/>
-    </a>
-  </footer>
+    <div class="social-links">
+      <a href="mailto:reverb_eight.3c@icloud.com" class="email-icon">
+        <img src="images/email-button.png" alt="Email Button">
+      </a>
+      <a href="https://github.com/nlauer07" target="_blank">
+        <img src="images/github-button.png" alt="GitHub Button">
+      </a>
+      <a href="https://www.linkedin.com/in/nick-lauer-343554234" target="_blank">
+        <img src="images/linkedin-button.png" alt="LinkedIn Button">
+      </a>
+    </div>
+  </footer> 
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('nav');
+      menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+    });
+  </script>
 </body>
 </html>
