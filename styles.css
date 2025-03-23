@@ -1,4 +1,4 @@
-/* -------------------------------------
+/* ------------------------------------- 
    IMPORT FONTS
    Loads custom fonts from Google Fonts.
 ------------------------------------- */
@@ -160,6 +160,12 @@ nav a[href="contact.html"] {
     cursor: pointer;          /* Changes cursor to pointer on hover */
   }
   
+  /* Hide decorative blue pill background on non-home pages */
+  header:not(.home-header) nav::before {
+    display: none;           /* Hides decorative pill background on mobile */
+  }
+  
+  /* Collapse nav list by default */
   nav ul {
     display: none;           /* Hides navigation links by default on mobile */
     flex-direction: column;  /* Stacks nav links vertically */
@@ -167,12 +173,41 @@ nav a[href="contact.html"] {
     margin-top: 1rem;        /* Adds space above the nav links */
   }
   
+  /* When nav is open, show the navigation list */
   nav.open ul {
     display: flex;           /* Displays nav links when the menu is open */
   }
   
   nav.open ul li {
     margin: 0.5rem 0;        /* Adds vertical spacing between nav items */
+  }
+  
+  .portfolio-page .project-buttons {
+    flex-direction: column;  /* Stacks project buttons vertically */
+    align-items: center;     /* Centers buttons horizontally */
+  }
+  
+  footer {
+    flex-direction: column;  /* Stacks footer items vertically */
+    text-align: center;      /* Centers text in the footer */
+  }
+  
+  footer a:first-of-type {
+    margin: 0;               /* Removes margin for first social link */
+    margin-top: auto;        /* Ensures proper spacing at the top */
+  }
+  
+  .home-page::before,
+  .headshot {
+    display: none;           /* Hides diagonal background and headshot on mobile */
+  }
+  
+  .skills-page h1,
+  .portfolio-page h1,
+  .project-page h1 {
+    height: 140px;           /* Sets fixed height for headings on small screens */
+    line-height: 140px;       /* Matches line height to height for centering */
+    font-size: 48px;          /* Adjusts font size for headings */
   }
 }
 
@@ -361,7 +396,7 @@ nav a[href="contact.html"] {
   display: flex;             /* Uses flexbox for centering content */
   align-items: center;       /* Vertically centers content */
   justify-content: center;   /* Horizontally centers content */
-  overflow-wrap: break-word;  /* Ensures long words break to fit */
+  overflow-wrap: break-word; /* Ensures long words break to fit */
 }
 
 .overview-paragraph {
@@ -670,8 +705,8 @@ nav a[href="contact.html"] {
   text-align: center;        /* Centers the heading text */
   background-color: #314B40;  /* Background color for the heading */
   display: inline-block;     /* Displays as inline-block for proper sizing */
-  padding: 0.5rem 1rem;       /* Padding around the heading */
-  border-radius: 9999px;      /* Fully rounded to create a pill shape */
+  padding: 0.5rem 1rem;       /* Adds padding around the heading */
+  border-radius: 9999px;      /* Fully rounds to create a pill shape */
   margin: 0 auto 1rem;        /* Centers and adds bottom margin */
 }
 
@@ -687,7 +722,7 @@ nav a[href="contact.html"] {
   display: inline-block;     /* Displays as inline-block */
   background-color: #314B40;  /* Sets background color */
   padding: 0.5rem 1rem;       /* Adds padding */
-  border-radius: 9999px;      /* Rounds corners fully */
+  border-radius: 9999px;      /* Rounds the corners fully */
   margin: 0 auto 1rem;        /* Centers and adds margin */
 }
 
@@ -696,7 +731,7 @@ nav a[href="contact.html"] {
    Styles for the back arrow image.
 ------------------------------------- */
 .back-button img {
-  height: 16px;              /* Sets height of the image */
+  height: 16px;              /* Sets the height of the back button image */
   margin-right: 0.5rem;       /* Adds space to the right */
   vertical-align: middle;     /* Vertically aligns the image */
 }
@@ -706,13 +741,13 @@ nav a[href="contact.html"] {
    Styles for the project header and back button link.
 ------------------------------------- */
 .project-header {
-  text-align: left;          /* Left-aligns the header text */
-  margin-bottom: 1rem;        /* Adds margin below the header */
+  text-align: left;         /* Left-aligns the project header text */
+  margin-bottom: 1rem;       /* Adds bottom margin */
 }
 
 .project-header .back-button-link {
-  display: inline-block;     /* Displays as inline-block */
-  margin-top: 0.5rem;         /* Adds top margin */
+  display: inline-block;    /* Displays the back button link inline */
+  margin-top: 0.5rem;        /* Adds top margin */
 }
 
 /* -------------------------------------
@@ -841,38 +876,52 @@ footer .social-links a img {
     align-items: center;     /* Centers items vertically */
   }
   
+  /* Hide the blue pill background on non-home pages */
+  header:not(.home-header) nav::before {
+    display: none;           /* Hides decorative pill background on mobile */
+  }
+  
   nav ul {
-    flex-direction: column; /* Stacks nav items vertically */
-    width: 100%;            /* Full width nav items */
-    margin-top: 1rem;       /* Adds top margin */
+    display: none;           /* Collapses nav list by default on mobile */
+    flex-direction: column;  /* Stacks nav items vertically */
+    width: 100%;             /* Full width nav items */
+    margin-top: 1rem;        /* Adds top margin */
+  }
+  
+  nav.open ul {
+    display: flex;           /* Shows nav list when menu is open */
+  }
+  
+  nav.open ul li {
+    margin: 0.5rem 0;        /* Adds vertical spacing between nav items */
   }
   
   .portfolio-page .project-buttons {
-    flex-direction: column; /* Stacks project buttons vertically */
-    align-items: center;    /* Centers buttons horizontally */
+    flex-direction: column;  /* Stacks project buttons vertically */
+    align-items: center;     /* Centers buttons horizontally */
   }
   
   footer {
-    flex-direction: column; /* Stacks footer items vertically */
-    text-align: center;     /* Centers text in the footer */
+    flex-direction: column;  /* Stacks footer items vertically */
+    text-align: center;      /* Centers text in the footer */
   }
   
   footer a:first-of-type {
-    margin: 0;             /* Removes margin for first social link */
-    margin-top: auto;      /* Ensures proper spacing at the top */
+    margin: 0;               /* Removes margin for first social link */
+    margin-top: auto;        /* Ensures proper spacing at the top */
   }
   
   .home-page::before,
   .headshot {
-    display: none;         /* Hides diagonal background and headshot on mobile */
+    display: none;           /* Hides diagonal background and headshot on mobile */
   }
   
   .skills-page h1,
   .portfolio-page h1,
   .project-page h1 {
-    height: 140px;         /* Sets fixed height for headings on small screens */
-    line-height: 140px;     /* Matches line height to height for centering */
-    font-size: 48px;        /* Adjusts font size for headings */
+    height: 140px;           /* Sets fixed height for headings on small screens */
+    line-height: 140px;       /* Matches line height to height for centering */
+    font-size: 48px;          /* Adjusts font size for headings */
   }
 }
 
@@ -897,35 +946,35 @@ footer .social-links a img {
 
 .project-page img,
 .project-page video {
-  display: block;           /* Ensures media displays as block elements */
-  margin: 1rem auto;        /* Centers media with margin */
+  display: block;            /* Ensures media displays as block elements */
+  margin: 1rem auto;         /* Centers images and videos with margin */
 }
 
 .project-page h3 {
-  text-align: center;       /* Centers heading text */
-  background-color: #314B40;  /* Sets background color */
-  display: inline-block;    /* Displays as inline-block */
-  padding: 0.5rem 1rem;      /* Adds padding inside the heading */
-  border-radius: 9999px;     /* Fully rounds the heading */
-  margin: 0 auto 1rem;       /* Centers the heading and adds bottom margin */
+  text-align: center;        /* Centers the heading text */
+  background-color: #314B40;  /* Sets background color for the heading */
+  display: inline-block;     /* Displays as inline-block for proper sizing */
+  padding: 0.5rem 1rem;       /* Adds padding around the heading */
+  border-radius: 9999px;      /* Fully rounds to create a pill shape */
+  margin: 0 auto 1rem;        /* Centers and adds bottom margin */
 }
 
 .demo-container {
-  text-align: center;       /* Centers demo container text */
+  text-align: center;        /* Centers demo container text */
 }
 
 .demo-container h3 {
-  display: inline-block;    /* Displays as inline-block */
+  display: inline-block;     /* Displays as inline-block */
   background-color: #314B40;  /* Sets background color */
-  padding: 0.5rem 1rem;      /* Adds padding */
-  border-radius: 9999px;     /* Rounds the corners fully */
-  margin: 0 auto 1rem;       /* Centers and adds margin */
+  padding: 0.5rem 1rem;       /* Adds padding */
+  border-radius: 9999px;      /* Rounds the corners fully */
+  margin: 0 auto 1rem;        /* Centers and adds margin */
 }
 
 .back-button img {
   height: 16px;             /* Sets the height of the back button image */
   margin-right: 0.5rem;       /* Adds right margin */
-  vertical-align: middle;     /* Aligns image vertically in the middle */
+  vertical-align: middle;     /* Vertically aligns the image */
 }
 
 .project-header {
