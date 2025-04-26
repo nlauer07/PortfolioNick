@@ -49,7 +49,7 @@
   <!-- Contact Form -->
   <section class="contact-section">
     <h2>Contact Form</h2>
-    <form>
+    <form id="contactForm" onsubmit="submitForm(event)">
       <label for="name">Name (*required)</label>
       <input type="text" id="name" name="name" required>
 
@@ -97,6 +97,7 @@
     </div>
   </footer> 
 
+  <!-- Menu Toggle Script -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const menuToggle = document.querySelector('.menu-toggle');
@@ -105,6 +106,46 @@
         nav.classList.toggle('open');
       });
     });
+  </script>
+
+  <!-- Contact Form Supabase Submission Script -->
+  <script>
+    async function submitForm(event) {
+      event.preventDefault();
+
+      const form = document.getElementById('contactForm');
+      const formData = new FormData(form);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const phone = formData.get('phone');
+      const message = formData.get('message');
+
+      const payload = { name, email, phone, message };
+
+      try {
+        const response = await fetch('https://nbfaxqghfqtfynwzqiyk.supabase.co/rest/v1/contacts', {
+          method: 'POST',
+          headers: {
+            'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5iZmF4cWdoZnF0Znlud3pxaXlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU3MDg5MzMsImV4cCI6MjA2MTI4NDkzM30.wMpzXf5blv8PGYkiKRoVYALtcORMaWo7HfGZ_I8eA5M',
+            'Authorization': 'Bearer your-anon-public-key',
+            'Content-Type': 'application/json',
+            'Prefer': 'return=representation'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          alert('Thank you for contacting me!');
+          form.reset();
+        } else {
+          alert('Sorry, something went wrong.');
+          console.error(await response.text());
+        }
+      } catch (error) {
+        console.error(error);
+        alert('There was an error submitting the form.');
+      }
+    }
   </script>
 </body>
 </html>
