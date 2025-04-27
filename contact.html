@@ -153,23 +153,27 @@
             'Prefer': 'return=minimal'
           },
           body: JSON.stringify(payload)
-    });
+      });
 
-    const result = await response.json();
-
-    if (response.ok) {
-      console.log('Success:', result);
-      alert('Response recorded. Thank you!');
-      form.reset();
-    } else {
-      console.error('Supabase Error:', result);
-      alert('Sorry, something went wrong. Please try again later.');
+      if (response.ok) {
+        alert('Response recorded. Thank you.');
+        form.reset();
+      } else {
+        // try to peek at a JSON error, but fall back to text
+        let errorBody;
+        try {
+          errorBody = await response.json();
+        } catch {
+          errorBody = await response.text();
+        }
+        console.error('Supabase returned error:', errorBody);
+        alert('There was an error submitting the form. Please try again later.');
+      }
+    } catch (networkError) {
+      console.error('Network Error:', networkError);
+      alert('There was an error submitting the form.');
     }
-  } catch (error) {
-    console.error('Network Error:', error);
-    alert('There was an error submitting the form.');
   }
-}
   </script>
 </body>
 </html>
