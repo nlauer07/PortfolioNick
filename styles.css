@@ -1152,7 +1152,7 @@ main.about-page .footer-panel {
 
 :root {
   --swiper-navigation-color: #457A66; /* arrow color */
-  --swiper-navigation-sides-offset: -2px; /* adjust this number */
+  --swiper-navigation-sides-offset: -2px; 
 }
 
 .form-button {
